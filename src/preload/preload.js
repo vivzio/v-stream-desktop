@@ -83,7 +83,7 @@ contextBridge.exposeInMainWorld('__PSTREAM_RELOAD_STREAM_PAGE__', () => ipcRende
 window.addEventListener('pstream-desktop-settings', () => {
   ipcRenderer.send('open-settings');
 });
-console.log('P-Stream Desktop Preload Loaded');
+console.log('V-Stream Desktop Preload Loaded');
 
 let lastThemeColor = null;
 let themeSendScheduled = false;
@@ -169,7 +169,7 @@ const ensureAudioGraph = () => {
     pstreamMasterGain.gain.value = pstreamCurrentBoost;
     pstreamMasterGain.connect(pstreamAudioContext.destination);
   } catch (error) {
-    console.warn('[P-Stream] Failed to initialise audio context for volume boost:', error);
+    console.warn('[V-Stream] Failed to initialise audio context for volume boost:', error);
     pstreamAudioContext = null;
     pstreamMasterGain = null;
   }
@@ -205,7 +205,7 @@ const hookMediaElementForBoost = (el) => {
 
     el.__pstreamBoosted = true;
   } catch (error) {
-    console.warn('[P-Stream] Failed to hook media element for volume boost:', error);
+    console.warn('[V-Stream] Failed to hook media element for volume boost:', error);
   }
 };
 
@@ -214,7 +214,7 @@ const scanAndHookMediaElements = () => {
     const mediaEls = document.querySelectorAll('audio, video');
     mediaEls.forEach((el) => hookMediaElementForBoost(el));
   } catch (error) {
-    console.warn('[P-Stream] Failed to scan media elements for volume boost:', error);
+    console.warn('[V-Stream] Failed to scan media elements for volume boost:', error);
   }
 };
 
@@ -227,7 +227,7 @@ const setupVolumeBoost = async () => {
     const initialBoost = await ipcRenderer.invoke('get-volume-boost');
     applyBoostValue(initialBoost);
   } catch (error) {
-    console.warn('[P-Stream] Failed to load initial volume boost:', error);
+    console.warn('[V-Stream] Failed to load initial volume boost:', error);
   }
 
   scanAndHookMediaElements();
@@ -253,7 +253,7 @@ const setupVolumeBoost = async () => {
       subtree: true,
     });
   } catch (error) {
-    console.warn('[P-Stream] Failed to observe media elements for volume boost:', error);
+    console.warn('[V-Stream] Failed to observe media elements for volume boost:', error);
   }
 };
 

@@ -128,7 +128,7 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(PRELOAD, 'preload-titlebar.js'),
     },
-    title: 'P-Stream',
+    title: 'V-Stream',
   };
 
   if (isMac) {
@@ -715,7 +715,7 @@ function createWindow() {
               }, '*');
             }
           } catch (e) {
-            console.error('[P-Stream Media Watcher]', e);
+            console.error('[V-Stream Media Watcher]', e);
           }
         };
 
@@ -916,14 +916,14 @@ function createWindow() {
   view.webContents.on('page-title-updated', (event, title) => {
     event.preventDefault();
 
-    if (title === 'P-Stream') {
-      mainWindow.setTitle('P-Stream');
+    if (title === 'V-Stream') {
+      mainWindow.setTitle('V-Stream');
       discordRPC.setCurrentActivityTitle(null);
       discordRPC.setCurrentMediaMetadata(null);
       discordRPC.setActivity(null);
     } else {
-      const cleanTitle = title.replace(' • P-Stream', '');
-      mainWindow.setTitle(`${cleanTitle} • P-Stream`);
+      const cleanTitle = title.replace(' • V-Stream', '');
+      mainWindow.setTitle(`${cleanTitle} • V-Stream`);
       discordRPC.setCurrentActivityTitle(cleanTitle);
       // Only use title if we don't have media metadata
       if (!discordRPC.getCurrentMediaMetadata()) {
@@ -1026,7 +1026,7 @@ function createSetupWindow() {
       contextIsolation: true,
       preload: SETUP_PRELOAD,
     },
-    title: 'P-Stream Setup',
+    title: 'V-Stream Setup',
     show: false,
   });
 
@@ -1055,8 +1055,8 @@ if (app.isPackaged) {
     // But we can explicitly set it to ensure it works
     autoUpdater.setFeedURL({
       provider: 'github',
-      owner: 'p-stream',
-      repo: 'p-stream-desktop',
+      owner: 'vivzio',
+      repo: 'v-stream-desktop',
     });
     console.log('Auto-updater configured for GitHub releases');
   } catch (error) {
@@ -1103,7 +1103,7 @@ autoUpdater.on('update-available', (info) => {
           .showMessageBox(BrowserWindow.getFocusedWindow() || null, {
             type: 'info',
             title: 'Update Available',
-            message: `A new version (${info.version}) of P-Stream is available!`,
+            message: `A new version (${info.version}) of V-Stream is available!`,
             detail: 'Update now to download and install automatically, or open the releases page in your browser.',
             buttons: ['Update now', 'Open Releases Page', 'Later'],
             defaultId: 0,
@@ -1116,7 +1116,7 @@ autoUpdater.on('update-available', (info) => {
               await checkAndAutoUpdate();
             } else if (result.response === 1) {
               // Open Releases Page button
-              shell.openExternal('https://github.com/p-stream/p-stream-desktop/releases');
+              shell.openExternal('https://github.com/vivzio/v-stream-desktop/releases');
             }
           })
           .catch(console.error);
@@ -1247,7 +1247,7 @@ ipcMain.handle('set-volume-boost', async (event, value) => {
 
 app.whenReady().then(async () => {
   // Set the app name
-  app.setName('P-Stream');
+  app.setName('V-Stream');
 
   // Check for updates FIRST (before creating window)
   // If an update is being installed, the app will quit and this won't continue
@@ -1416,7 +1416,7 @@ app.whenReady().then(async () => {
   // IPC handler for opening releases page in external browser
   ipcMain.handle('openReleasesPage', () => {
     try {
-      shell.openExternal('https://github.com/p-stream/p-stream-desktop/releases');
+      shell.openExternal('https://github.com/vivzio/v-stream-desktop/releases');
       return { success: true };
     } catch (error) {
       console.error('Failed to open releases page:', error);
@@ -1495,7 +1495,7 @@ app.whenReady().then(async () => {
               message: 'To complete the uninstall:',
               detail:
                 '1. All app data has been cleared.\n' +
-                '2. Please drag P-Stream.app from your Applications folder to the Trash.\n' +
+                '2. Please drag V-Stream.app from your Applications folder to the Trash.\n' +
                 '3. Empty the Trash to complete the removal.',
               buttons: ['OK'],
             });
@@ -1522,7 +1522,7 @@ app.whenReady().then(async () => {
               message: 'To complete the uninstall:',
               detail:
                 '1. All app data has been cleared.\n' +
-                '2. Please drag P-Stream.app from your Applications folder to the Trash.\n' +
+                '2. Please drag V-Stream.app from your Applications folder to the Trash.\n' +
                 '3. Empty the Trash to complete the removal.',
               buttons: ['OK'],
             });
@@ -1537,7 +1537,7 @@ app.whenReady().then(async () => {
             message: 'To complete the uninstall:',
             detail:
               '1. All app data has been cleared.\n' +
-              '2. Please drag P-Stream.app from your Applications folder to the Trash.\n' +
+              '2. Please drag V-Stream.app from your Applications folder to the Trash.\n' +
               '3. Empty the Trash to complete the removal.',
             buttons: ['OK'],
           });
@@ -1553,7 +1553,7 @@ app.whenReady().then(async () => {
           detail:
             '1. All app data has been cleared.\n' +
             '2. Open Settings > Apps > Apps & features\n' +
-            '3. Find "P-Stream" and click Uninstall\n' +
+            '3. Find "V-Stream" and click Uninstall\n' +
             '4. Follow the uninstaller prompts',
           buttons: ['Open Settings', 'OK'],
           defaultId: 0,
@@ -1577,7 +1577,7 @@ app.whenReady().then(async () => {
           message: 'To complete the uninstall:',
           detail:
             '1. All app data has been cleared.\n' +
-            '2. Delete the P-Stream AppImage file from where you saved it.\n' +
+            '2. Delete the V-Stream AppImage file from where you saved it.\n' +
             '3. Remove any desktop entries or shortcuts you created.',
           buttons: ['OK'],
         });

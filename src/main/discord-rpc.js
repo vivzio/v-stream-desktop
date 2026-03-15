@@ -48,7 +48,7 @@ function setActivityRaw(args) {
 
   const activity = {
     type: ACTIVITY_TYPE_WATCHING,
-    name: args.name ?? 'P-Stream',
+    name: args.name ?? 'V-Stream',
     state: args.state ?? undefined,
     details: args.details ?? undefined,
     timestamps,
@@ -136,7 +136,7 @@ function getStreamUrlForRPC() {
  * Movies/single: just the title
  */
 function getCurrentMediaTitle(mediaMetadata) {
-  if (!mediaMetadata?.title) return 'P-Stream';
+  if (!mediaMetadata?.title) return 'V-Stream';
   const title = mediaMetadata.title;
   const artist = mediaMetadata.artist;
   return artist ? `${artist} - ${title}` : title;
@@ -148,7 +148,7 @@ function getCurrentMediaTitle(mediaMetadata) {
  * Movies/single: just the title
  */
 function getActivityNameFromMedia(mediaMetadata) {
-  if (!mediaMetadata?.title) return 'P-Stream';
+  if (!mediaMetadata?.title) return 'V-Stream';
   const title = mediaMetadata.title;
   const artist = mediaMetadata.artist;
   return artist ? artist : title;
@@ -185,14 +185,14 @@ async function setActivity(title, mediaMetadata = null) {
 
   if (!mediaMetadata) {
     const streamUrl = getStreamUrlForRPC();
-    const buttons = streamUrl ? [{ label: 'Use P-Stream', url: streamUrl }] : undefined;
+    const buttons = streamUrl ? [{ label: 'Use V-Stream', url: streamUrl }] : undefined;
 
     setActivityRaw({
-      details: 'P-Stream',
+      details: 'V-Stream',
       state: 'Browsing',
       startTimestamp: new Date(),
       largeImageKey: 'logo',
-      largeImageText: 'P-Stream',
+      largeImageText: 'V-Stream',
       instance: false,
       buttons,
     });
@@ -200,7 +200,7 @@ async function setActivity(title, mediaMetadata = null) {
   }
 
   const streamUrl = getStreamUrlForRPC();
-  const buttons = streamUrl ? [{ label: 'Use P-Stream', url: streamUrl }] : undefined;
+  const buttons = streamUrl ? [{ label: 'Use V-Stream', url: streamUrl }] : undefined;
 
   const activity = {
     name: getActivityNameFromMedia(mediaMetadata),
@@ -208,9 +208,9 @@ async function setActivity(title, mediaMetadata = null) {
     state: 'Loading...',
     startTimestamp: new Date(),
     largeImageKey: mediaMetadata.poster || 'logo',
-    largeImageText: mediaMetadata.artist || mediaMetadata.title || 'P-Stream',
+    largeImageText: mediaMetadata.artist || mediaMetadata.title || 'V-Stream',
     smallImageKey: 'logo_no_bg',
-    smallImageText: 'P-Stream',
+    smallImageText: 'V-Stream',
     instance: false,
     buttons,
   };

@@ -1,9 +1,9 @@
 {
-  "name": "p-stream-desktop",
-  "productName": "P-Stream",
+  "name": "v-stream-desktop",
+  "productName": "V-Stream",
   "version": "1.2.6",
-  "description": "Desktop app for P-Stream",
-  "author": "P-Stream",
+  "description": "Desktop app for V-Stream",
+  "author": "V-Stream",
   "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
@@ -36,15 +36,15 @@
     "electron-updater": "^6.7.3"
   },
   "build": {
-    "appId": "com.p-stream.desktop",
-    "productName": "P-Stream",
+    "appId": "com.v-stream.desktop",
+    "productName": "V-Stream",
     "directories": {
       "output": "dist"
     },
     "publish": {
       "provider": "github",
-      "owner": "p-stream",
-      "repo": "p-stream-desktop"
+      "owner": "vivzio",
+      "repo": "v-stream-desktop"
     },
     "files": [
       "**/*",
@@ -70,7 +70,7 @@
         "zip"
       ],
       "requestedExecutionLevel": "asInvoker",
-      "executableName": "P-Stream"
+      "executableName": "V-Stream"
     },
     "linux": {
       "icon": "logo.png",
@@ -83,7 +83,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "P-Stream",
+      "shortcutName": "V-Stream",
       "deleteAppDataOnUninstall": false,
       "artifactName": "${productName} Setup ${version}.${ext}",
       "runAfterFinish": true,

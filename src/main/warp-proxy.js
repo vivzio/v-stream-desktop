@@ -50,7 +50,7 @@ function fetchJson(url) {
   return new Promise((resolve, reject) => {
     const options = {
       headers: {
-        'User-Agent': 'P-Stream-Desktop',
+        'User-Agent': 'V-Stream-Desktop',
         Accept: 'application/json',
       },
     };
@@ -83,7 +83,7 @@ function downloadFile(url, destPath) {
   return new Promise((resolve, reject) => {
     const options = {
       headers: {
-        'User-Agent': 'P-Stream-Desktop',
+        'User-Agent': 'V-Stream-Desktop',
       },
     };
 

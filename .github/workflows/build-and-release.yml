@@ -54,7 +54,7 @@ jobs:
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: p-stream-linux-${{ matrix.arch }}
+          name: v-stream-linux-${{ matrix.arch }}
           path: dist/*.AppImage
           retention-days: 30
 
@@ -97,7 +97,7 @@ jobs:
       - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: p-stream-windows-${{ matrix.arch }}
+          name: v-stream-windows-${{ matrix.arch }}
           path: |
             dist/*.exe
             dist/*.zip
@@ -141,7 +141,7 @@ jobs:
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: p-stream-macos-${{ matrix.arch }}
+          name: v-stream-macos-${{ matrix.arch }}
           path: |
             dist/*.dmg
             dist/*.zip

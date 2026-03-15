@@ -1,10 +1,10 @@
-# P-Stream Desktop
+# V-Stream Desktop
 
-Desktop app for P-Stream (movie-web) that provides enhanced streaming capabilities through browser extension integration.
+Desktop app for V-Stream (movie-web, P-Stream fork) that provides enhanced streaming capabilities through browser extension integration.
 
 ## Features
 
-- Native desktop wrapper for P-Stream
+- Native desktop wrapper for V-Stream
 - Enhanced streaming capabilities via browser extension
 - Automatic update checking from GitHub releases
 - Discord Rich Presence integration
@@ -13,7 +13,7 @@ Desktop app for P-Stream (movie-web) that provides enhanced streaming capabiliti
 
 ## Installation
 
-Download the latest [release](https://github.com/p-stream/p-stream-desktop/releases)
+Download the latest [release](https://github.com/vivzio/v-stream-desktop/releases)
 
 For **MacOS** it will fail to open, go to Settings > Privacy and Security, and press `Open Anyway`. Confirm with password or Touch ID!
 
@@ -55,7 +55,7 @@ The project uses GitHub Actions for automated building and releasing. When you c
 
 To create a release:
 
-1. Go to the [Releases](https://github.com/p-stream/p-stream-desktop/releases) page
+1. Go to the [Releases](https://github.com/vivzio/v-stream-desktop/releases) page
 2. Click "Create a new release"
 3. Create a new tag (e.g., `v1.1.0`)
 4. Publish the release
@@ -66,7 +66,7 @@ The workflow will automatically build and attach all platform binaries to your r
 
 You can also trigger a draft release manually:
 
-1. Go to [Actions](https://github.com/p-stream/p-stream-desktop/actions)
+1. Go to [Actions](https://github.com/vivzio/v-stream-desktop/actions)
 2. Select "Build and Release" workflow
 3. Click "Run workflow"
 4. Optionally specify a version tag

@@ -7,7 +7,7 @@ const titlebarRight = document.querySelector('.titlebar__right');
 const appIcon = document.querySelector('.app-icon');
 
 // Store last theme color to restore after reload (persist across reloads)
-const THEME_COLOR_KEY = 'p-stream-titlebar-theme-color';
+const THEME_COLOR_KEY = 'V-Stream-titlebar-theme-color';
 
 // Function to apply theme color to titlebar
 const applyThemeColor = (color) => {
@@ -97,7 +97,7 @@ titlebar.addEventListener('dblclick', (event) => {
 });
 
 window.windowControls.onTitleChanged((title) => {
-  if (titleEl) titleEl.textContent = title || 'P-Stream';
+  if (titleEl) titleEl.textContent = title || 'V-Stream';
 });
 
 window.windowControls.onMaximizedChanged((isMaximized) => {

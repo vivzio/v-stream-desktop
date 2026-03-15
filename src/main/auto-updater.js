@@ -12,8 +12,8 @@ const PRELOAD = path.join(__dirname, '..', 'preload');
 const UPDATER = path.join(__dirname, '..', 'updater');
 
 // GitHub repository configuration
-const GITHUB_OWNER = 'p-stream';
-const GITHUB_REPO = 'p-stream-desktop';
+const GITHUB_OWNER = 'vivzio';
+const GITHUB_REPO = 'v-stream-desktop';
 
 // Updater window reference
 let updaterWindow = null;
@@ -44,7 +44,7 @@ function fetchJSON(url) {
   return new Promise((resolve, reject) => {
     const options = {
       headers: {
-        'User-Agent': 'P-Stream-Desktop-Updater',
+        'User-Agent': 'V-Stream-Desktop-Updater',
         Accept: 'application/vnd.github.v3+json',
       },
     };
@@ -100,7 +100,7 @@ function downloadFile(url, destPath, onProgress) {
       const reqOptions = {
         hostname: urlObj.hostname,
         path: urlObj.pathname + urlObj.search,
-        headers: { 'User-Agent': 'P-Stream-Desktop-Updater' },
+        headers: { 'User-Agent': 'V-Stream-Desktop-Updater' },
       };
 
       https

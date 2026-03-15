@@ -408,7 +408,7 @@ resetAppBtn.addEventListener('click', async () => {
 // Uninstall app
 uninstallAppBtn.addEventListener('click', async () => {
   const firstConfirm = confirm(
-    '⚠️ WARNING: This will permanently delete the P-Stream app and ALL associated data from your computer.\n\n' +
+    '⚠️ WARNING: This will permanently delete the V-Stream app and ALL associated data from your computer.\n\n' +
       'This includes:\n' +
       '• All app settings\n' +
       '• All cookies and browsing data\n' +
@@ -418,7 +418,7 @@ uninstallAppBtn.addEventListener('click', async () => {
   );
   if (!firstConfirm) return;
   const secondConfirm = confirm(
-    'Final confirmation: Are you sure you want to uninstall P-Stream?\n\n' +
+    'Final confirmation: Are you sure you want to uninstall V-Stream?\n\n' +
       'The app will be removed from your computer and all data will be deleted.',
   );
   if (!secondConfirm) return;
