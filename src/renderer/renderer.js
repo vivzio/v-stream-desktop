@@ -5,6 +5,7 @@ const closeBtn = document.getElementById('close');
 const titlebar = document.getElementById('titlebar');
 const titlebarRight = document.querySelector('.titlebar__right');
 const appIcon = document.querySelector('.app-icon');
+const controls = window.windowControls;
 
 // Store last theme color to restore after reload (persist across reloads)
 const THEME_COLOR_KEY = 'V-Stream-titlebar-theme-color';
@@ -33,8 +34,8 @@ const restoreThemeColor = () => {
   }
 };
 
-// Platform-specific setup
-window.windowControls.onPlatformChanged((platform) => {
+// Applies platform-specific titlebar behavior
+const applyPlatform = (platform) => {
   const isMac = platform === 'darwin';
   const isLinux = platform === 'linux';
 
@@ -84,39 +85,71 @@ window.windowControls.onPlatformChanged((platform) => {
       setTimeout(restoreThemeColor, 100);
     });
   }
-});
+};
 
-minimizeBtn.addEventListener('click', () => window.windowControls.minimize());
-maximizeBtn.addEventListener('click', () => window.windowControls.maximizeToggle());
-closeBtn.addEventListener('click', () => window.windowControls.close());
+const detectPlatformFallback = () => {
+  const raw = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  const platform = raw.toLowerCase();
+  if (platform.includes('mac')) return 'darwin';
+  if (platform.includes('linux')) return 'linux';
+  return 'win32';
+};
 
-titlebar.addEventListener('dblclick', (event) => {
-  const isButton = event.target.closest('.window-btn');
-  if (isButton) return;
-  window.windowControls.maximizeToggle();
-});
+// Ensure platform classes are applied even if IPC callback arrives late/unavailable.
+applyPlatform(detectPlatformFallback());
+if (controls && typeof controls.onPlatformChanged === 'function') {
+  controls.onPlatformChanged((platform) => {
+    applyPlatform(platform || detectPlatformFallback());
+  });
+}
 
-window.windowControls.onTitleChanged((title) => {
-  if (titleEl) titleEl.textContent = title || 'V-Stream';
-});
+if (minimizeBtn && controls && typeof controls.minimize === 'function') {
+  minimizeBtn.addEventListener('click', () => controls.minimize());
+}
+if (maximizeBtn && controls && typeof controls.maximizeToggle === 'function') {
+  maximizeBtn.addEventListener('click', () => controls.maximizeToggle());
+}
+if (closeBtn && controls && typeof controls.close === 'function') {
+  closeBtn.addEventListener('click', () => controls.close());
+}
 
-window.windowControls.onMaximizedChanged((isMaximized) => {
-  if (!maximizeBtn) return;
-  if (isMaximized) maximizeBtn.classList.add('is-maximized');
-  else maximizeBtn.classList.remove('is-maximized');
-});
+if (titlebar && controls && typeof controls.maximizeToggle === 'function') {
+  titlebar.addEventListener('dblclick', (event) => {
+    const isButton = event.target.closest('.window-btn');
+    if (isButton) return;
+    controls.maximizeToggle();
+  });
+}
 
-window.windowControls.onThemeColorChanged((color) => {
-  applyThemeColor(color);
-});
+if (controls && typeof controls.onTitleChanged === 'function') {
+  controls.onTitleChanged((title) => {
+    if (titleEl) titleEl.textContent = title || 'V-Stream';
+  });
+}
+
+if (controls && typeof controls.onMaximizedChanged === 'function') {
+  controls.onMaximizedChanged((isMaximized) => {
+    if (!maximizeBtn) return;
+    if (isMaximized) maximizeBtn.classList.add('is-maximized');
+    else maximizeBtn.classList.remove('is-maximized');
+  });
+}
+
+if (controls && typeof controls.onThemeColorChanged === 'function') {
+  controls.onThemeColorChanged((color) => {
+    applyThemeColor(color);
+  });
+}
 
 // Hide/show titlebar based on fullscreen state
-window.windowControls.onFullscreenChanged((isFullscreen) => {
-  if (titlebar) {
-    if (isFullscreen) {
-      titlebar.style.display = 'none';
-    } else {
-      titlebar.style.display = '';
+if (controls && typeof controls.onFullscreenChanged === 'function') {
+  controls.onFullscreenChanged((isFullscreen) => {
+    if (titlebar) {
+      if (isFullscreen) {
+        titlebar.style.display = 'none';
+      } else {
+        titlebar.style.display = '';
+      }
     }
-  }
-});
+  });
+}
