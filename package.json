@@ -1,7 +1,7 @@
 {
   "name": "v-stream-desktop",
   "productName": "V-Stream",
-  "version": "1.2.6",
+  "version": "1.0.0",
   "description": "Desktop app for V-Stream",
   "author": "V-Stream",
   "main": "src/main/main.js",
